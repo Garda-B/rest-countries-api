@@ -40,10 +40,20 @@ function App() {
 
   // Storing country history //
 
-  
+  useEffect(() => {
+    setHistory(prevhistory => [...prevhistory, country])
 
-   const handleDelete = () => {
 
+  }, [country])
+
+
+  useEffect(() => {
+
+    console.log(history)
+  }, [history])
+
+
+  const handleDelete = () => {
     
     setHistory(prevHistory => {
       prevHistory.pop();
@@ -83,8 +93,6 @@ function App() {
 
     setCountry(newcountry[0])
 
-    setHistory(prevhistory => [...prevhistory, country])
-
 
   }
 
@@ -99,11 +107,11 @@ function App() {
   return (
     <>
       <header>
-        <h1 onClick={() => { setCountry({}), setSearch(["", ""]), setHistory(prevhistory => [...prevhistory, country]) }}>Where in the World?</h1>
+        <h1 onClick={() => { setCountry({}), setSearch(["", ""]) }}>Where in the World?</h1>
         <div onClick={handleTheme} className='theme'><BsMoon className='moon' /><p>{theme == "light-theme" ? "Dark mode" : "Light mode"}</p></div>
       </header>
 
-      {country == null || Object.keys(country).length == 0 ?
+      {Object.keys(country).length == 0 ?
 
         <main>
           <div className='search'>
@@ -123,7 +131,7 @@ function App() {
 
             {filteredSearch.map((country, i) =>
 
-              <div key={i} onClick={() => {setCountry(country), setHistory(prevhistory => [...prevhistory, country])}} className='country'>
+              <div key={i} onClick={() => setCountry(country)} className='country'>
                 <div className='picdiv'><img alt={country.name.common} src={country.flags.svg}></img></div>
                 <h2>{country.name.common}</h2>
                 <div className='info'>
