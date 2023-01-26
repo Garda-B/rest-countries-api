@@ -40,18 +40,23 @@ function App() {
 
   // Storing country history //
 
-  useEffect(() => {
-    setHistory(prevhistory => [...prevhistory, country])
 
+  const updateHistory = (newCountry) => {
+    setHistory(prevhistory => [...prevhistory, newCountry])
+}
 
-  }, [country])
+useEffect(() => {
+  updateHistory(country)
+}, [country])
 
 
 
   const handleDelete = () => {
+
+    
     setHistory(prevHistory => {
       prevHistory.pop();
-      return prevHistory;s
+      return prevHistory;
     });
 
     setCountry(history[history.length - 2])
