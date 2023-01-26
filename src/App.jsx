@@ -51,11 +51,14 @@ function App() {
   const handleDelete = () => {
     setHistory(prevHistory => {
       prevHistory.pop();
-      return prevHistory;
+      return prevHistory;s
     });
 
     setCountry(history[history.length - 2])
     setSearch(["", ""])
+
+    console.log(history);
+    console.log(country);
 
   }
 
