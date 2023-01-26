@@ -41,31 +41,29 @@ function App() {
   // Storing country history //
 
   useEffect(() => {
-    setHistory(prevhistory => [...prevhistory, country])
+
+    if (history[history.length - 1 ] !== country) {
+    setHistory(prevhistory => [...prevhistory, country]) }
 
 
   }, [country])
 
 
   useEffect(() => {
-
+    console.log(history[history.length - 1])
     console.log(history)
   }, [history])
 
 
   const handleDelete = () => {
-    
-    setHistory(prevHistory => {
-      prevHistory.pop();
-      return prevHistory;
-    });
+
+     
+    setHistory(history.slice(0, -1));
 
     setCountry(history[history.length - 2])
     setSearch(["", ""])
 
-    console.log(history);
-    console.log(country);
-
+   
   }
 
 
